@@ -9,8 +9,9 @@ $(document).ready(function(){
     peer = window.peer;
 //////////////////****************ESTABLISH CONNECTION****************////////////////////
     dataConnect.click(function(){
+        $('.disconnect').show();
         var distantId = $('#distant_id').val();
-        var conn = window.conn = peer.connect(distantId);
+        var conn = peer.connect(distantId);
         //AJOUTER DATAS
         conn.on('open', function(){
             $('.peer_selector').hide();
@@ -36,12 +37,15 @@ $(document).ready(function(){
             vStarter.hide();
             navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
             console.log(peer.peer)
-            try{
                 conn.send('ping');
-            }
-            catch(err){
-                console.log(err)
-            }
+                window.ping = Date.now();
+                conn.on('data', function(data){
+                    if(typeof data === 'string' && data === 'pong'){
+                        console.log('pong received')
+                        window.pong = Date.now()
+                        console.log((window.pong - window.ping)/1000);
+                    }
+                })
             navigator.getUserMedia({audio: true, video: true}, function(stream){
                 let video = document.createElement('video');
                 video.src = URL.createObjectURL(stream);
@@ -85,7 +89,8 @@ setTimeout(function(){
             }
             if(typeof data === 'string'){
                 if(data === 'ping'){
-                    distantPeer.send('pong');
+                    console.log('ping_received');
+                    conn.send('pong');
                 }
                 if(imgControler.test(data)){
                     window.fileName = data;
@@ -106,7 +111,7 @@ setTimeout(function(){
                 let streamUrl = URL.createObjectURL(stream);
                 video.src = streamUrl;
                 video.classList.add('their_video')
-                $('.rtc_module .video').append(video);
+                $('.video').append(video);
                 })
         }
     })

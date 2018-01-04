@@ -6,7 +6,7 @@ body{
     display:none;
 }
 .is_not_main{
-    display:none;
+    display:block;
 }
 #video-container{
     display:none;
