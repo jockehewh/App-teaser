@@ -33,6 +33,9 @@ $(document).ready(function(){
             })
         })
         vStarter.click(function(){
+            var fullhd = {width:720, height:1280}
+            var sdHigh = {width:360, height:480}
+            var sd = {width:144, height:176}
             $('.video_module').show();
             vStarter.hide();
             navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
@@ -41,20 +44,16 @@ $(document).ready(function(){
                 window.ping = Date.now();
                 conn.on('data', function(data){
                     if(typeof data === 'string' && data === 'pong'){
-                        console.log('pong received')
                         window.pong = Date.now()
-                        console.log((window.pong - window.ping)/1000);
+                        window.delta = (window.pong - window.ping)/1000;
+                        if ( 0.751 < window.delta ) {
+                            pseudoNetworkConditionSizedVideo(sd)
+                        }else if ( 0.351 < window.delta < 0.750 ) {
+                            pseudoNetworkConditionSizedVideo(sdHigh)
+                        }else if ( 0 < window.delta < 0.350 ) {
+                            pseudoNetworkConditionSizedVideo(fullhd)
+                        }
                     }
-                })
-            navigator.getUserMedia({audio: true, video: true}, function(stream){
-                let video = document.createElement('video');
-                video.src = URL.createObjectURL(stream);
-                video.classList.add('my_video');
-                window.localStream = stream;
-                let videoCall = peer.call(distantId, window.localStream);
-                $('.video').append(video)
-            }, function(err){
-                console.log(err)
                 })
             })
     })
@@ -65,9 +64,25 @@ $(document).ready(function(){
         $('.peer_selector').show();
         $('.files_element').hide();
         $('.video_module').hide();
+        $('video').remove();
+        window.URL.revokeObjectURL(window.localStream);
+        window.URL.revokeObjectURL(window.streamUrl);
+        disconnect.hide();
     });
 })//DOM READY
-
+function pseudoNetworkConditionSizedVideo(quality){
+    navigator.getUserMedia({audio: true, video: quality}, function(stream){
+        var distantId = $('#distant_id').val();
+        let video = document.createElement('video');
+        video.src = URL.createObjectURL(stream);
+        video.classList.add('my_video');
+        window.localStream = stream;
+        let videoCall = peer.call(distantId, window.localStream);
+        $('.video').append(video)
+    }, function(err){
+        console.log(err)
+        })
+}
 setTimeout(function(){
     peer.on('connection', function(conn){
         let distantPeer = conn.peer;
@@ -89,7 +104,6 @@ setTimeout(function(){
             }
             if(typeof data === 'string'){
                 if(data === 'ping'){
-                    console.log('ping_received');
                     conn.send('pong');
                 }
                 if(imgControler.test(data)){
@@ -108,8 +122,8 @@ setTimeout(function(){
             conn.answer(window.localStream);
             conn.on('stream', function(stream){
                 let video = document.createElement('video');
-                let streamUrl = URL.createObjectURL(stream);
-                video.src = streamUrl;
+                window.streamUrl = URL.createObjectURL(stream);
+                video.src = window.streamUrl;
                 video.classList.add('their_video')
                 $('.video').append(video);
                 })
