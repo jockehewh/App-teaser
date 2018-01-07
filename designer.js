@@ -6,11 +6,8 @@ $(document).ready(function(){
         var addIt = e.srcElement.getAttribute("class");
         switch(addIt){
             case "videoBtn":
-            addIn("VIDEO")
+            addIn("VIDEO_chat")
             builder('.video_module')
-            break;
-            case "chatBtn":
-            addIn("CHAT")
             builder('.datas_module')
             break;
             case "minigameBtn":
@@ -26,11 +23,13 @@ $(document).ready(function(){
 function addIn(a){
     if(document.querySelector('.'+a) !== null){
         document.querySelector('#show .'+a).remove();
+        document.querySelector('nav ul .'+a).remove();
     }else{
     var item = document.createElement('li');
     item.innerText = a;
     item.classList.add(a);
     document.querySelector('#show').appendChild(item);
+    document.querySelector('nav ul').appendChild(item);
     }
 }
 function builder(item){
