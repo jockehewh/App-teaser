@@ -52,7 +52,23 @@
             </div><!--VIDEO_MODULE-->
         </div><!--WEBRTC_MODULE-->
         <div class="mg_module">
-            
+            <div class="game_screen">
+                <p id="score_bar">Your scorce: <span id="yoScore">0</span><br>Their score: <span id='tyScore'>0</span></p>
+                <div class="game_box">
+                    <div class="game_btn"><p>Press !!</p></div>
+                    <script>
+                        var gamebtn = document.querySelector('.game_btn');
+                        var yourScore = document.querySelector('#yoScore');
+                        var theirScore = document.querySelector('#tyScore');
+                        var meCount = 0;
+                        var theyCount = 0;
+                        gamebtn.addEventListener('click',() => {
+                            meCount++;
+                            yourScore.innerText = meCount;
+                        })
+                    </script>
+                </div>
+            </div>
         </div><!--MINI GAME MODULE-->
         <div class="todo_module">
 
