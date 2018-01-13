@@ -44,7 +44,7 @@ function builder(item){
 function wsCreate(){
 let main = document.querySelector('.is_main').innerHTML
     let owner = prompt('what is your name?', '')
-    let finale = new WebSocket(`ws://localhost:8986`)
+    let finale = new WebSocket(`ws://localhost:3002`)
     finale.onopen = function () {
         finale.send(main)
     }
