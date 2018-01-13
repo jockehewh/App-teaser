@@ -6,12 +6,16 @@ $(document).ready(function(){
         var addIt = e.srcElement.getAttribute("class");
         switch(addIt){
             case "videoBtn":
-            addIn("VIDEO_chat")
-            builder('.video_module')
-            builder('.datas_module')
+            addIn("Webrtc")
+            builder('.webrtc_module')
             break;
             case "minigameBtn":
-            addIn("MINIGAME")
+            addIn("Minigame")
+            builder('.mg_module')
+            break;
+            case "todoBtn":
+            addIn("Todo")
+            builder('.todo_module')
             break;
             case "downloadBtn":
                 wsCreate()

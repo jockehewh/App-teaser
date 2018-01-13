@@ -27,40 +27,49 @@
         </ul>
     </div>
     <div class="is_not_main">
-        <div class="datas_module">
-            <span class="local_name"></span> <span class="status"></span>
-            <div class="peer_selector">
-                <input type="text" id="distant_id"> <button id="data_connect">connect</button>
-                <select id="friendsList"></select>
-            </div>
-            <div class="files_element">
-                <input type="file" id="sendFiles" multiple>
-                <br>
-                <div class="messagerie_text">
-                    <div>
-                        <ul id="messages"></ul>
+        <div class="webrtc_module"><!--WEBRTC_MODULE-->
+            <div class="datas_module">
+                <span class="local_name"></span> <span class="status"></span>
+                <div class="peer_selector">
+                    <input type="text" id="distant_id"> <button id="data_connect">connect</button>
+                    <select id="friendsList"></select>
+                </div>
+                <div class="files_element">
+                    <input type="file" id="sendFiles" multiple>
+                    <br>
+                    <div class="messagerie_text">
+                        <div>
+                            <ul id="messages"></ul>
+                        </div>
+                        <textarea type="text" id="text" rows=3 cols=50 placeholder="Send message"></textarea>
+                        <input id="send" type="submit" value="Send"><button id="fileSend">Send a file</button><button id="vStarter">Add your Video</button>
                     </div>
-                    <textarea type="text" id="text" rows=3 cols=50 placeholder="Send message"></textarea>
-                    <input id="send" type="submit" value="Send"><button id="fileSend">Send a file</button><button id="vStarter">Add your Video</button>
                 </div>
-            </div>
-        </div><!--DATAS_MODULE-->
-        <div class="video_module">
-                <div class="video">
-                </div>
-        </div><!--VIDEO_MODULE-->
-        <!--MINI GAME MODULE-->
+            </div><!--DATAS_MODULE-->
+            <div class="video_module">
+                    <div class="video">
+                    </div>
+            </div><!--VIDEO_MODULE-->
+        </div><!--WEBRTC_MODULE-->
+        <div class="mg_module">
+            
+        </div><!--MINI GAME MODULE-->
+        <div class="todo_module">
+
+        </div><!--TO DO MODULE-->
         <button class="disconnect">disconnect</button>
     </div><!--IS_NOT_MAIN-->
     <div class="is_main">
         <nav>
             <ul></ul>
         </nav>
+        <button class="disconnect">disconnect</button>
     </div>
     <div class="selectors">
         <ul>
             <li><a class="videoBtn" href="#">video chat</a></li>
             <li><a class="minigameBtn" href="#">mini games</a></li>
+            <li><a class="todoBtn" href="#">mini games</a></li>
             <li><a class="downloadBtn" href="#">Download</a></li>
         </ul>
     </div>
