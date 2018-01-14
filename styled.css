@@ -1,4 +1,3 @@
-
 body{
     max-width: 700px;
 }
@@ -8,7 +7,6 @@ body{
 .is_not_main{
     display:none;
 }
-
 .modele_module{
     height: 480px;
     width: 360px;
