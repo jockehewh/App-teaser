@@ -7,22 +7,35 @@
     <link rel="stylesheet" href="./styled.css">
     <script src="./scripts/zepto.min.js"></script>
     <title>App et teaser</title>
-    <style>
-        .selectors{
-            display:flex;
-            flex-direction: column;
-        }
-        .selectors ul li{
-            display:flex;
-        }
-    </style>
 </head>
 <body>
-    <div class="modele_module">
-        <ul id="show">
+    <header>
+        <div class="pseudo_logo">
+            <h1>App &amp; Teaser</h1>
+            <p>Build apps in Clicks</p>
+        </div>
+        <img class="logo" src="img/logo-gris.png" alt="app &amp; teaser logo">
+    </header>
+    <main>
+        <div class="selectors">
+            <h3>Add what you need:</h3>
+            <ul>
+                <li><a class="videoBtn" href="#">video chat</a></li>
+                <li><a class="minigameBtn" href="#">mini games</a></li>
+                <li><a class="todoBtn" href="#">to do list</a></li>
+                <li><a class="downloadBtn" href="#">Download</a></li>
+            </ul>
+            <img class="transfertImg" src="img/transfert-logo.svg" alt="transfert icon">
+        </div>
+        <div class="modele_module">
+            <div id="show">
+    
+            </div>
+        </div>
+    </main>
+    <footer>
 
-        </ul>
-    </div>
+    </footer>
     <div class="is_not_main">
         <div class="webrtc_module"><!--WEBRTC_MODULE-->
             <div class="datas_module">
@@ -94,14 +107,6 @@
             <ul></ul>
         </nav>
         <button class="disconnect">disconnect</button>
-    </div>
-    <div class="selectors">
-        <ul>
-            <li><a class="videoBtn" href="#">video chat</a></li>
-            <li><a class="minigameBtn" href="#">mini games</a></li>
-            <li><a class="todoBtn" href="#">to do list</a></li>
-            <li><a class="downloadBtn" href="#">Download</a></li>
-        </ul>
     </div>
     <script src="designer.js"></script>
 </body>
