@@ -1,5 +1,7 @@
 body{
     max-width: 700px;
+    margin: auto;
+    user-select: none;
 }
 .is_main{
     display:none;

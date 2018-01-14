@@ -26,13 +26,11 @@ $(document).ready(function(){
 
 function addIn(a){
     if(document.querySelector('.'+a) !== null){
-        document.querySelector('#show .'+a).remove();
         document.querySelector('nav ul .'+a).remove();
     }else{
     var item = document.createElement('li');
     item.innerText = a;
     item.classList.add(a);
-    document.querySelector('#show').appendChild(item);
     document.querySelector('nav ul').appendChild(item);
     }
 }
