@@ -78,12 +78,13 @@
             </div>
         </div><!--MINI GAME MODULE-->
         <div class="todo_module">
+            <span class="close_todo">Close [x]</span>
             <div class='todo_list'>
                 <ul>
                     
                 </ul>
                 <div class="input">
-                    <input id="todo" type="text" placeholder="Add something to do"><button class="addBtn">Add</button>
+                    <input id="todo" type="text" placeholder="Add something to do"><button class="addBtn">Add</button><button class="removeBtn">Remove</button>
                 </div>
             </div>
             <script>
@@ -92,7 +93,7 @@
                     var allTodos = window.db.todolist.toCollection();
                     allTodos.each(function(todo){
                         var li = document.createElement('li');
-                        li.innerHTML = `<span><input type="checkbox" class="${todo.status}"></span> ${todo.note}`;
+                        li.innerHTML = `<span><input type="checkbox" class="${todo.status}" value="${todo.note}"></span> ${todo.note}`;
                         document.querySelector('.todo_list ul').appendChild(li)
                     })
                     var addBtn = document.querySelector('.addBtn')
@@ -100,9 +101,21 @@
                         var note = document.querySelector('#todo');
                         window.db.todolist.add({note: note.value, status: 'not_done'});
                         var li = document.createElement('li');
-                        li.innerHTML = `<span><input type="checkbox" class="not_done"></span> ${note.value}`;
+                        li.innerHTML = `<span><input type="checkbox" class="not_done" value="${note.value}"></span> ${note.value}`;
                         document.querySelector('.todo_list ul').appendChild(li)
                         note.value = '';
+                    })
+                    var removeBtn = document.querySelector('.removeBtn');
+                    removeBtn.addEventListener('click', function(){
+                        var tasks = $('.todo_list ul li').find('input, checkbox')
+                        tasks.forEach(function(task){
+                            if(task.checked){
+                                console.log(task.value)
+                                window.db.todolist.where({note: task.value}).delete().then((key)=>{
+                                    task.parentElement.parentElement.remove();
+                                })
+                            }
+                        })
                     })
                 }
             })
