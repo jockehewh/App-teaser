@@ -17,13 +17,32 @@ $(document).ready(function(){
             addIn("Todo")
             builder('.todo_module')
             break;
+            case "morePages":
+                addPage('.one_page');
+            break;
             case "downloadBtn":
                 wsCreate()
             break;
         }
     })
 })
-
+var pageCounter = 1;
+function addPage(a){
+    if(document.querySelectorAll(a) !== null){
+        document.querySelectorAll(a).forEach((element) => {
+            if(element.classList.contains(pageCounter.toString()) &&  0 < pageCounter <= document.querySelectorAll(a).length){
+                element.remove();
+            }
+        })
+    }else{
+        var pageName = prompt('Please enter page name: ', '')
+        var item = document.createElement('li');
+        item.innerText = pageName;
+        item.classList.add(a, pageCounter.toString());
+        document.querySelector('nav ul').appendChild(item);
+        item.setAttribute('data-module', a);
+    }/**88888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888 */
+}
 function addIn(a){
     if(document.querySelector('.'+a) !== null){
         document.querySelector('nav ul .'+a).remove();
@@ -32,6 +51,7 @@ function addIn(a){
     item.innerText = a;
     item.classList.add(a);
     document.querySelector('nav ul').appendChild(item);
+    item.setAttribute('data-module', a);
     }
 }
 function builder(item){

@@ -23,6 +23,7 @@
                 <li><a class="videoBtn" href="#">video chat</a></li>
                 <li><a class="minigameBtn" href="#">mini games</a></li>
                 <li><a class="todoBtn" href="#">to do list</a></li>
+                <li><a class="morePages" href="#">add a custom page</a></li>
                 <li><a class="downloadBtn" href="#">Download</a></li>
             </ul>
             <img class="transfertImg" src="img/transfert-logo.svg" alt="transfert icon">
@@ -44,7 +45,7 @@
 
     </footer>
     <div class="is_not_main">
-        <div class="webrtc_module"><!--WEBRTC_MODULE-->
+        <div class="webrtc_module" data-module="Webrtc"><!--WEBRTC_MODULE-->
             <div class="datas_module">
                 <span class="local_name"></span> <span class="status"></span>
                 <div class="peer_selector">
@@ -69,7 +70,7 @@
                     </div>
             </div><!--VIDEO_MODULE-->
         </div><!--WEBRTC_MODULE-->
-        <div class="mg_module">
+        <div class="mg_module" data-module="Minigame">
             <div class="game_screen">
                 <p id="score_bar">Your score: <span id="yoScore">0</span><br>Their score: <span id='tyScore'>0</span></p>
                 <div class="game_box">
@@ -77,7 +78,7 @@
                 </div>
             </div>
         </div><!--MINI GAME MODULE-->
-        <div class="todo_module">
+        <div class="todo_module" data-module="Todo">
             <span class="close_todo">Close [x]</span>
             <div class='todo_list'>
                 <ul>
@@ -121,6 +122,9 @@
             })
             </script>
         </div><!--TO DO MODULE-->
+        <div class="one_page" data-module="onePage">
+            <h2 id="title"></h2>
+        </div><!--ADD PAGE MODULE-->
     </div><!--IS_NOT_MAIN-->
     <div class="is_main">
         <nav>
